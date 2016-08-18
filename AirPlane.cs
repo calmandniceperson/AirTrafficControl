@@ -2,7 +2,7 @@ namespace AirTrafficControl
 {
     public class AirPlane
     {
-        private string flightNum;
+        public string flightNum {get;set;}
 
         public AirPlane(string flightNum)
         {
