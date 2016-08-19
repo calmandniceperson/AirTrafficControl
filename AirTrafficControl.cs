@@ -10,12 +10,22 @@ namespace AirTrafficControl
 
         public void addPlane(AirPlane a)
         {
-            planes.Add(a);
+            this.planes.Add(a);
+        }
+
+        public void removePlane(AirPlane plane)
+        {
+            this.planes.RemoveAt(this.planes.IndexOf(plane));
         }
 
         public List<AirPlane> getPlanes()
         {
             return this.planes;
+        }
+
+        public AirPlane getPlane(int index)
+        {
+            return this.planes[index];
         }
     }
 }

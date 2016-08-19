@@ -3,6 +3,7 @@
 // August 2016
 
 using System;
+using System.Threading;
 
 namespace AirTrafficControl
 {
@@ -14,18 +15,39 @@ namespace AirTrafficControl
 
             AirTrafficControl atc = new AirTrafficControl();
 
-            atc.addPlane(new AirPlane("A111"));
-            atc.addPlane(new AirPlane("A112"));
+            atc.addPlane(new AirPlane("A111", 800,
+                        new PolarCoord(AtcoConstants.STARTDISTANCE, 90)));
+            //atc.addPlane(new AirPlane("A112", AtcoConstants.MINSPEED,
+            //            new PolarCoord(300.0, 20));
 
-            int index = 0;
             do {
                 // repeat steps for moving planes
-                foreach (AirPlane plane in atc.getPlanes())
+                for (int i = 0; i < atc.getPlanes().Count; i++)
                 {
-                    Console.WriteLine(plane.flightNum);
+                    var plane = atc.getPlane(i);
+                    if(plane.position.distance <= 100 &&
+                            plane.position.distance > 3)
+                    {
+                        Console.WriteLine("Airplane [speed="+plane.flightSpeed+
+                                ", distance="+
+                                Math.Round(plane.position.distance, 1)+"km ]");
+                        plane.position.distance -= 
+                            (plane.flightSpeed/3600)*AtcoConstants.
+                            TIMEINTERVALSECONDS;
+                        Console.WriteLine("Status after Step ----------------");
+                    }
+                    else if(plane.position.distance <= 3)
+                    {
+                        Console.WriteLine("Airplane to land [speed="+
+                                plane.flightSpeed+", distance="+
+                                Math.Round(plane.position.distance, 1)+"km ]");
+                        atc.removePlane(plane);
+                    }
                 }
-                index = 10;
-            } while(index < 10);
+                Thread.Sleep(Convert.ToInt32(AtcoConstants.
+                            TIMEINTERVALSECONDS*100));
+            } while(atc.getPlanes().Count > 0);
+            Console.WriteLine("No further Airplane");
         }
     }
 }
