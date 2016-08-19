@@ -17,8 +17,8 @@ namespace AirTrafficControl
 
             atc.addPlane(new AirPlane("A111", 800,
                         new PolarCoord(AtcoConstants.STARTDISTANCE, 90)));
-            //atc.addPlane(new AirPlane("A112", AtcoConstants.MINSPEED,
-            //            new PolarCoord(300.0, 20));
+            atc.addPlane(new AirPlane("A112", 700,
+                        new PolarCoord(99.0, 90)));
 
             do {
                 // repeat steps for moving planes
@@ -28,18 +28,12 @@ namespace AirTrafficControl
                     if(plane.Position.Distance <= 100 &&
                             plane.Position.Distance > 3)
                     {
-                        Console.WriteLine("Airplane [speed="+plane.FlightSpeed+
-                                "km/h, Distance="+
-                                Math.Round(plane.Position.Distance, 1)+"km ]");
-                        plane.Position.Distance -=
-                            (plane.FlightSpeed/3600)*AtcoConstants.
-                            TIMEINTERVALSECONDS;
-                        Console.WriteLine("Status after Step ----------------");
+                        step(plane);
                     }
                     else if(plane.Position.Distance <= 3)
                     {
                         Console.WriteLine("Airplane to land [speed="+
-                                plane.FlightSpeed+"km/h, Distance="+
+                                Math.Round(plane.FlightSpeed)+"km/h, Distance="+
                                 Math.Round(plane.Position.Distance, 1)+"km ]");
                         atc.removePlane(plane);
                     }
@@ -48,6 +42,17 @@ namespace AirTrafficControl
                             TIMEINTERVALSECONDS*100));
             } while(atc.getPlanes().Count > 0);
             Console.WriteLine("No further Airplane");
+        }
+
+        private static void step(AirPlane plane)
+        {
+            var distanceMoved = ((plane.FlightSpeed*10)/3.6)/1000;
+            plane.Position.Distance -= distanceMoved;
+            plane.FlightSpeed -= distanceMoved * (plane.StartSpeed/100);
+            Console.WriteLine("Status after Step ---------------------");
+            Console.WriteLine("Airplane [speed="+(int)plane.FlightSpeed+
+                    "km/h, Distance="+Math.Round(plane.Position.Distance, 1)+
+                    "km ]");
         }
     }
 }

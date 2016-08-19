@@ -4,6 +4,7 @@ namespace AirTrafficControl
     {
         public string FlightNum {get;}
 
+        public double StartSpeed {get;}
         private double flightSpeed;
         public double FlightSpeed
         {
@@ -21,12 +22,15 @@ namespace AirTrafficControl
             }
         }
         public PolarCoord Position {get;}
+        public CartesianCoord CartPosition {get;set;}
 
-        public AirPlane(string flightNum, double flightSpeed, PolarCoord pos)
+        public AirPlane(string flightNum, double startSpeed, PolarCoord pos)
         {
             this.FlightNum = flightNum;
-            this.FlightSpeed = flightSpeed;
+            this.StartSpeed = startSpeed;
+            this.flightSpeed = startSpeed;
             this.Position = pos;
+            CartPosition = CConverter.convertToCartesian(this.Position);
         }
     }
 }
