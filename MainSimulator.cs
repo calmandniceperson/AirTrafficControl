@@ -22,6 +22,7 @@ namespace AirTrafficControl
 
             do {
                 // repeat steps for moving planes
+                Console.WriteLine("Status after Step ---------------------");
                 for (int i = 0; i < atc.getPlanes().Count; i++)
                 {
                     var plane = atc.getPlane(i);
@@ -49,7 +50,6 @@ namespace AirTrafficControl
             var distanceMoved = ((plane.FlightSpeed*10)/3.6)/1000;
             plane.Position.Distance -= distanceMoved;
             plane.FlightSpeed -= distanceMoved * (plane.StartSpeed/100);
-            Console.WriteLine("Status after Step ---------------------");
             Console.WriteLine("Airplane [speed="+(int)plane.FlightSpeed+
                     "km/h, Distance="+Math.Round(plane.Position.Distance, 1)+
                     "km ]");
