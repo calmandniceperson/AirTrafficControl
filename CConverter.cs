@@ -6,8 +6,8 @@ namespace AirTrafficControl
     {
         public static CartesianCoord convertToCartesian(PolarCoord coord)
         {
-            double x = coord.distance * Math.Cos(coord.angle);
-            double y = coord.distance * Math.Sin(coord.angle);
+            double x = coord.Distance * Math.Cos(coord.Angle);
+            double y = coord.Distance * Math.Sin(coord.Angle);
             return new CartesianCoord(x, y);
         }
     }

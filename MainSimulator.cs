@@ -25,22 +25,22 @@ namespace AirTrafficControl
                 for (int i = 0; i < atc.getPlanes().Count; i++)
                 {
                     var plane = atc.getPlane(i);
-                    if(plane.position.distance <= 100 &&
-                            plane.position.distance > 3)
+                    if(plane.Position.Distance <= 100 &&
+                            plane.Position.Distance > 3)
                     {
-                        Console.WriteLine("Airplane [speed="+plane.flightSpeed+
-                                ", distance="+
-                                Math.Round(plane.position.distance, 1)+"km ]");
-                        plane.position.distance -= 
-                            (plane.flightSpeed/3600)*AtcoConstants.
+                        Console.WriteLine("Airplane [speed="+plane.FlightSpeed+
+                                "km/h, Distance="+
+                                Math.Round(plane.Position.Distance, 1)+"km ]");
+                        plane.Position.Distance -= 
+                            (plane.FlightSpeed/3600)*AtcoConstants.
                             TIMEINTERVALSECONDS;
                         Console.WriteLine("Status after Step ----------------");
                     }
-                    else if(plane.position.distance <= 3)
+                    else if(plane.Position.Distance <= 3)
                     {
                         Console.WriteLine("Airplane to land [speed="+
-                                plane.flightSpeed+", distance="+
-                                Math.Round(plane.position.distance, 1)+"km ]");
+                                plane.FlightSpeed+"km/h, Distance="+
+                                Math.Round(plane.Position.Distance, 1)+"km ]");
                         atc.removePlane(plane);
                     }
                 }
