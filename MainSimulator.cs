@@ -31,7 +31,7 @@ namespace AirTrafficControl
                         Console.WriteLine("Airplane [speed="+plane.FlightSpeed+
                                 "km/h, Distance="+
                                 Math.Round(plane.Position.Distance, 1)+"km ]");
-                        plane.Position.Distance -= 
+                        plane.Position.Distance -=
                             (plane.FlightSpeed/3600)*AtcoConstants.
                             TIMEINTERVALSECONDS;
                         Console.WriteLine("Status after Step ----------------");
