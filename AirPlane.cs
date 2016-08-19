@@ -5,7 +5,8 @@ namespace AirTrafficControl
         public string FlightNum {get;}
 
         private double flightSpeed;
-        public double FlightSpeed {
+        public double FlightSpeed
+        {
             get
             {
                 return flightSpeed;
