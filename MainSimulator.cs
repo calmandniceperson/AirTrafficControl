@@ -83,22 +83,19 @@ namespace AirTrafficControl
         private static void putPlaneOnHold(AirPlane plane,
                 List<AirPlane> planes)
         {
-            plane.Position.Distance = 100.0;
-            var foundCorridor = false;
-            do
+            if (!planeWithinRangeOfAnother(plane, planes))
             {
-                plane.Position.Angle += 3;
-                if (!planeWithinRangeOfAnother(plane, planes))
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Plane " + plane.FlightNum +
-                            " has been put in corridor " +
-                            plane.Position.Angle + " at " +
-                            plane.Position.Distance + "km distance.");
-                    Console.ResetColor();
-                    break;
-                }
-            } while (!foundCorridor);
+                return;
+            }
+            plane.Position.Distance = 100.0;
+            plane.Position.Angle += 3;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Plane " + plane.FlightNum +
+                    " has been put in corridor " +
+                    plane.Position.Angle + " at " +
+                    plane.Position.Distance + "km distance.");
+            Console.ResetColor();
+            putPlaneOnHold(plane, planes);
         }
 
         private static void step(AirPlane plane)
