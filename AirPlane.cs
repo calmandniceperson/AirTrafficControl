@@ -22,7 +22,6 @@ namespace AirTrafficControl
             }
         }
         public PolarCoord Position {get;}
-        public CartesianCoord CartPosition {get;set;}
 
         public AirPlane(string flightNum, double startSpeed, PolarCoord pos)
         {
@@ -30,7 +29,6 @@ namespace AirTrafficControl
             this.StartSpeed = startSpeed;
             this.flightSpeed = startSpeed;
             this.Position = pos;
-            CartPosition = CConverter.convertToCartesian(this.Position);
         }
     }
 }
