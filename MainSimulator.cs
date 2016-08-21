@@ -36,7 +36,7 @@ namespace AirTrafficControl
                         // Main radar handles planes within 3km
                         // Not our job
                         Console.WriteLine("Airplane " + plane.FlightNum + 
-                                "to land [speed="+
+                                " to land [speed="+
                                 Math.Round(plane.FlightSpeed)+"km/h, Distance="+
                                 Math.Round(plane.Position.Distance, 1)+"km " +
                                 ", Angle=" + plane.Position.Angle + "deg ]");
