@@ -4,9 +4,9 @@ namespace AirTrafficControl
 {
     public class AirTrafficControl
     {
+        // List of planes currently tracked
+        // If a plane reaches the 3km threshold, it is removed from this list
         private List<AirPlane> planes = new List<AirPlane>();
-
-        public AirTrafficControl() {}
 
         public void addPlane(AirPlane a)
         {

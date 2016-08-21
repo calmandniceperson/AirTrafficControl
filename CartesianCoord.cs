@@ -1,5 +1,6 @@
 namespace AirTrafficControl
 {
+    // Represents a plane's location with X and Y coordinates
     public class CartesianCoord
     {
         public double X {get;}
