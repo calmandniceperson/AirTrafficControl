@@ -12,6 +12,7 @@ namespace AirTrafficControl
     {
         public static void Main(string[] args)
         {
+            Console.Clear();
             Console.WriteLine("Welcome to AirTrafficControl");
 
             AirTrafficControl atc = new AirTrafficControl();
