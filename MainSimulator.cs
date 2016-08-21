@@ -26,13 +26,14 @@ namespace AirTrafficControl
                 for (int i = 0; i < atc.getPlanes().Count; i++)
                 {
                     var plane = atc.getPlane(i);
-                    if(plane.Position.Distance <= 100 &&
-                            plane.Position.Distance > 3)
+                    if(plane.Position.Distance > 3)
                     {
                         step(plane);
                     }
                     else if(plane.Position.Distance <= 3)
                     {
+                        // Main radar handles planes within 3km
+                        // Not our job
                         Console.WriteLine("Airplane to land [speed="+
                                 Math.Round(plane.FlightSpeed)+"km/h, Distance="+
                                 Math.Round(plane.Position.Distance, 1)+"km ]");
