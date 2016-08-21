@@ -144,7 +144,8 @@ namespace AirTrafficControl
         {
             // Calculate the distance moved in 1sec (1000)
             var distanceMoved =
-                ((plane.FlightSpeed*AtcoConstants.TIMEINTERVALSECONDS)/3.6)/1000;
+                ((plane.FlightSpeed*AtcoConstants.TIMEINTERVALSECONDS)
+                 /3.6)/1000;
             // Set new distance
             plane.Position.Distance -= distanceMoved;
             // Decrease the flight speed linearly with the distance moved
